@@ -1,0 +1,55 @@
+<head>
+  <title>kbox</title>
+  <script src="//www.youtube.com/player_api"></script>
+</head>
+
+<body></body>
+
+<template name="player">
+  <iframe allowfullscreen id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/?autoplay=1&enablejsapi=1&iv_load_policy=3" frameborder="0"></iframe>
+
+  <ul class="playlist">
+  {{#each videos}}
+    <li class="">
+      <span class="name">{{title}}</span>
+      <span class="score">{{score}}</span>
+    </li>
+  {{/each}}
+    <li>Song 1</li>
+    <li>Song 2</li>
+  </ul>
+
+  <div class="nowplaying">
+    current song blah blah blah{{currVideo.title}}
+    {{currVideochannelTitle}}
+  </div>
+</template>
+
+<template name="client">
+  Now playing: {{currVideo.title}}
+  <form id="search-form">
+    <input type="Text" id="search-input" />
+  </form>
+  <!--
+  <form id="add-form">
+    <input type="text" id="link-input" />
+  </form>
+  -->
+
+  {{#if searchResults}}
+    <ul class="search-results">
+    {{#each searchResults}}
+      <li>{{title}}</li>
+    {{/each}}
+    </ul>
+  {{else}}
+    no results
+  {{/if}}
+
+  {{#each videos}}
+    <div class="playlist-item">
+      <span class="name">{{title}}</span>
+      <span class="score">{{score}}</span>
+    </div>
+  {{/each}}
+</template>
