@@ -44,11 +44,11 @@ if (Meteor.isClient) {
     };
 
     var nextVideo = function() {
-      var playingVid = Videos.findOne({status:1});
-      if (playingVid) {
-        Videos.update({_id: playingVid._id}, {$set: {status: 2}});
-      }
-      
+      // update playing videos
+      Videos.find({status:1}).forEach(function (video) {
+        Videos.update({_id:video._id}, {$set: {status:2}});
+      });
+
       var firstVid = Videos.findOne({status: 0}, {sort: {score: -1}});
 
       if (firstVid) {
@@ -96,6 +96,7 @@ if (Meteor.isClient) {
       $.get('https://www.googleapis.com/youtube/v3/search', {
         'key': 'AIzaSyArzGCKV1-msUpixN4oaYkL4gv3ekdJaA0',
         'part': 'snippet',
+        'maxResults': 15,
         'q': input.val()
       },function(data){
         Session.set('searchResults', data.items.map(function(item) {
@@ -122,7 +123,8 @@ if (Meteor.isClient) {
         link: this.id,
         score:0,
         status:0,
-        title: this.title
+        title: this.title,
+        channel: this.channel
       });
     }
   });

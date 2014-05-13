@@ -7,21 +7,22 @@
 
 <template name="player">
   <iframe allowfullscreen id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/?autoplay=1&enablejsapi=1&iv_load_policy=3" frameborder="0"></iframe>
-
+  
   <ul class="playlist">
+    <div class="logo">
+      kbox
+    </div>
   {{#each videos}}
     <li class="">
-      <span class="name">{{title}}</span>
-      <span class="score">{{score}}</span>
+      <div class="title">{{title}}</div>
+      <div class="score">{{score}}</div>
     </li>
   {{/each}}
-    <li>Song 1</li>
-    <li>Song 2</li>
   </ul>
 
   <div class="nowplaying">
-    current song blah blah blah{{currVideo.title}}
-    {{currVideochannelTitle}}
+    <h1>{{currVideo.title}}</h1>
+    <h2 class="channel">{{currVideo.channel}}</h2>
   </div>
 </template>
 

@@ -33,20 +33,67 @@ body {
   height: 100%;
   float: left;
   overflow: hidden;
+
+  background: #eee;
 }
-  .playlist li {
-    padding: 20px 10px;
-  }
+.playlist .logo {
+  text-align: center;
+  padding: 12px;
+  font-size: 60px;
+  font-weight: 100;
+  color: #444;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 5px;
+}
+.playlist li {
+  padding: 20px 10px;
+  position: relative;
+  border-bottom: 1px solid #DDD;
+}
+.playlist li .title {
+  margin-left: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 355px;
+  white-space: nowrap;
+  height: 18px;
+  color: #333;
+}
+.playlist li .score {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+  height: 30px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 30px;
+  text-align: center;
+  background: #CCC;
+  padding: 4px 0;
+  border-radius: 3px;
+}
 
 .nowplaying {
   position: absolute;
-  width: 100%;
+  width: 70%;
   height: 20%;
   bottom: 0;
   left: 0;
-  padding: 20px 10px;
+  padding: 35px 20px;
   font-size: 35px;
+  overflow: hidden;
+
+  background: #292929;
+  color: #EEE;
 }
+  .nowplaying .channel {
+    font-size: 0.75em;
+    margin-top: 15px;
+    color: #AAA;
+  }
 
 .playlist-item {
   cursor: pointer;
