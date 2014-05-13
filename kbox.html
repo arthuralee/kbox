@@ -1,4 +1,5 @@
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>kbox</title>
   <script src="//www.youtube.com/player_api"></script>
 </head>
@@ -27,15 +28,7 @@
 </template>
 
 <template name="client">
-  Now playing: {{currVideo.title}}
-  <form id="search-form">
-    <input type="Text" id="search-input" />
-  </form>
-  <!--
-  <form id="add-form">
-    <input type="text" id="link-input" />
-  </form>
-  -->
+  <input type="Text" id="search-input" placeholder="Search..." />
 
   {{#if searchResults}}
     <ul class="search-results">
@@ -43,14 +36,18 @@
       <li>{{title}}</li>
     {{/each}}
     </ul>
-  {{else}}
-    no results
   {{/if}}
+  
+  <ul>
+    <li class="playlist-item">
+      Now playing: {{currVideo.title}}
+    </li>
 
   {{#each videos}}
-    <div class="playlist-item">
-      <span class="name">{{title}}</span>
-      <span class="score">{{score}}</span>
-    </div>
+    <li class="playlist-item">
+      <div class="score">{{score}}</div>
+      <div class="title">{{title}}</div>
+    </li>
   {{/each}}
+  </ul>
 </template>

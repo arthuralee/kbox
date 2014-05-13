@@ -89,26 +89,32 @@ if (Meteor.isClient) {
     return Videos.findOne({status: 1});
   };
 
+  var searchTimeout;
   Template.client.events({
-    'submit #search-form': function(e) {
-      e.preventDefault();
-      var input = $('#search-input', e.target);
-      $.get('https://www.googleapis.com/youtube/v3/search', {
-        'key': 'AIzaSyArzGCKV1-msUpixN4oaYkL4gv3ekdJaA0',
-        'part': 'snippet',
-        'maxResults': 15,
-        'q': input.val()
-      },function(data){
-        Session.set('searchResults', data.items.map(function(item) {
-          return {
-            id: item.id.videoId,
-            title: item.snippet.title,
-            channel: item.snippet.channelTitle
-          }
-        }));
-        input.val('');
-      });
+    'input #search-input': function(e) {
+      window.clearTimeout(searchTimeout);
+      searchTimeout = window.setTimeout(function() {
+        var input = $(e.target);
+        if (input.val() === '') {
+          Session.set('searchResults', []);
+          return;
+        }
 
+        $.get('https://www.googleapis.com/youtube/v3/search', {
+          'key': 'AIzaSyArzGCKV1-msUpixN4oaYkL4gv3ekdJaA0',
+          'part': 'snippet',
+          'maxResults': 15,
+          'q': input.val()
+        },function(data){
+          Session.set('searchResults', data.items.map(function(item) {
+            return {
+              id: item.id.videoId,
+              title: item.snippet.title,
+              channel: item.snippet.channelTitle
+            }
+          }));
+        });
+      }, 750);
     },
     'click .playlist-item': function(e) {
       if (voted(this._id)) {
@@ -126,6 +132,8 @@ if (Meteor.isClient) {
         title: this.title,
         channel: this.channel
       });
+      Session.set('searchResults', []);
+      $('#search-input').val('');
     }
   });
 
@@ -141,18 +149,4 @@ if (Meteor.isClient) {
 
 // On server startup, create some players if the database is empty.
 if (Meteor.isServer) {
-  /*
-  Meteor.startup(function () {
-    if (Players.find().count() === 0) {
-      var names = ["Ada Lovelace",
-                   "Grace Hopper",
-                   "Marie Curie",
-                   "Carl Friedrich Gauss",
-                   "Nikola Tesla",
-                   "Claude Shannon"];
-      for (var i = 0; i < names.length; i++)
-        Players.insert({name: names[i], score: Math.floor(Random.fraction()*10)*5});
-    }
-  });
-  */
 }

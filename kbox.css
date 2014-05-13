@@ -33,7 +33,7 @@ body {
   height: 100%;
   float: left;
   overflow: hidden;
-
+  border: 1px solid #DDD;
   background: #eee;
 }
 .playlist .logo {
@@ -54,7 +54,6 @@ body {
   margin-left: 45px;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 355px;
   white-space: nowrap;
   height: 18px;
   color: #333;
@@ -95,48 +94,70 @@ body {
     color: #AAA;
   }
 
+
+
+
+
+
+/*=============================================
+=                 Voter                      =
+=============================================*/
+#search-input {
+  border: none;
+  margin: 0;
+  padding: 10px;
+  background: #FFF;
+  border-bottom: 1px solid #EEE;
+  display: block;
+  width: 100%;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+.search-results {
+  position: absolute;
+  background: #FFF;
+  z-index: 10;
+  width: 95%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  box-shadow: rgba(100, 100, 100, 0.5) 0 3px 5px;
+}
+.search-results li {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 7px;
+  color: #777;
+  font-size: 15px;
+}
+
 .playlist-item {
-  cursor: pointer;
-  padding: 5px;
+  padding: 20px 10px;
+  position: relative;
+  border-bottom: 1px solid #DDD;
 }
-
-.playlist-item .name {
-  display: inline-block;
-  width: 300px;
-  font-size: 1.75em;
+.playlist-item .title {
+  margin-left: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 18px;
+  color: #333;
 }
-
 .playlist-item .score {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-  font-size: 2em;
+  position: absolute;
+  font-size: 20px;
   font-weight: bold;
-  color: #777;
-}
-
-.playlist-item.selected {
-  background-color: yellow;
-}
-
-.playlist-item.selected .score {
-  color: black;
-}
-
-.details, .none {
-  font-weight: bold;
-  font-size: 2em;
-  border-style: dashed none none none;
-  border-color: #ccc;
-  border-width: 4px;
-  margin: 50px 10px;
-  padding: 10px 0px;
-}
-
-.none {
-  color: #777;
-}
-
-.inc {
-  cursor: pointer;
+  color: #666;
+  height: 30px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 30px;
+  text-align: center;
+  background: #CCC;
+  padding: 4px 0;
+  border-radius: 3px;
 }
