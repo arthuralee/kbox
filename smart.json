@@ -1,6 +1,7 @@
 {
   "packages": {
     "iron-router": {},
-    "session-amplify": {}
+    "session-amplify": {},
+    "hammer": {}
   }
 }

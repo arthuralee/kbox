@@ -116,7 +116,7 @@ if (Meteor.isClient) {
         });
       }, 750);
     },
-    'click .playlist-item': function(e) {
+    'tap .playlist-item': function(e) {
       if (voted(this._id)) {
         return;
       } else {
@@ -124,7 +124,7 @@ if (Meteor.isClient) {
         Videos.update({_id:this._id}, {$inc: {score:1}});
       }
     },
-    'click .search-results li': function(e) {
+    'tap .search-results li': function(e) {
       Videos.insert({
         link: this.id,
         score:0,
